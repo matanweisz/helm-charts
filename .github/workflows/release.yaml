@@ -38,7 +38,9 @@ jobs:
         run: |
           DATE=$(date +'%d-%m-%Y')
           HASH=$(git rev-parse --short HEAD)
-          VERSION="$DATE-$HASH"
+          RUN_NUMBER=${{ github.run_number }}
+          
+          VERSION="$DATE-$HASH-$RUN_NUMBER"
 
           for CHART in $(find charts -name Chart.yaml); do
             echo "Updating version in $CHART to $VERSION"
