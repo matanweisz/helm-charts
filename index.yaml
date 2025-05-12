@@ -31,6 +31,16 @@ entries:
     urls:
     - https://github.com/matanweisz/helm-charts/releases/download/configmap-12-05-2025-4240be1-11/configmap-12-05-2025-4240be1-11.tgz
     version: 12-05-2025-4240be1-11
+  - apiVersion: v2
+    appVersion: 12-05-2025-1b8c12c-12
+    created: "2025-05-12T15:52:51.617901618Z"
+    description: A Helm chart for creating a configmap
+    digest: 21d813a8dea6844ca10f6fcf34c23fde58300a89e9f7061e0d6de5de5f6f70ea
+    name: configmap
+    type: application
+    urls:
+    - https://github.com/matanweisz/helm-charts/releases/download/configmap-12-05-2025-1b8c12c-12/configmap-12-05-2025-1b8c12c-12.tgz
+    version: 12-05-2025-1b8c12c-12
   nginx-ingress:
   - apiVersion: v2
     appVersion: 12-05-2025-cda55d8-10
@@ -154,4 +164,4 @@ entries:
     urls:
     - https://github.com/matanweisz/helm-charts/releases/download/weather-app-chart-0.1.0/weather-app-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-12T15:19:36.673148816Z"
+generated: "2025-05-12T15:52:51.617970548Z"
