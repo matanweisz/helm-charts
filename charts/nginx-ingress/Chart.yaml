@@ -16,13 +16,13 @@ type: application
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
 <<<<<<< HEAD
-version: 0.0.1
+version: "12-05-2025-d78e163-8"
 =======
-version: "12-05-2025-909ed3b"
+version: "12-05-2025-d78e163-8"
 >>>>>>> ed7be221607d0ca2fa79693eb06a54f572911ab6
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "12-05-2025-909ed3b"
+appVersion: "12-05-2025-d78e163-8"
