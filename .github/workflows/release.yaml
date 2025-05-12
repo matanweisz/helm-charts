@@ -1,44 +1,53 @@
-name: Release Chart
+name: Release Charts
 
 on:
   push:
     branches:
-      - main
+      - chart-release
 
 jobs:
   release:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Configure Git
+      - name: Set up Git
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
 
-      - name: Generate Chart Version
-        id: chart-version
+      - name: Generate Versions for Modified Charts
+        id: version
         run: |
           DATE=$(date +'%d-%m-%Y')
           COMMIT_HASH=$(git rev-parse --short HEAD)
           VERSION="$DATE-$COMMIT_HASH"
-          echo "Generated version: $VERSION"
-          sed -i "s/^version:.*/version: \"$VERSION\"/" charts/weather-app/Chart.yaml
-          sed -i "s/^appVersion:.*/appVersion: \"$VERSION\"/" charts/weather-app/Chart.yaml
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Using version: $VERSION"
 
-      - name: Commit version bump
-        run: |
-          git add charts/weather-app/Chart.yaml
-          git commit -m "Auto-bump chart version to ${{ steps.chart-version.outputs.version }}"
-          git push
+          CHANGED=false
+          for CHART in charts/*; do
+            if git diff --name-only HEAD^ HEAD | grep "$CHART/" > /dev/null; then
+              echo "Updating chart in $CHART"
+              sed -i "s/^version:.*/version: \"$VERSION\"/" "$CHART/Chart.yaml"
+              sed -i "s/^appVersion:.*/appVersion: \"$VERSION\"/" "$CHART/Chart.yaml"
+              CHANGED=true
+            fi
+          done
+
+          if $CHANGED; then
+            git add charts/*/Chart.yaml
+            git commit -m "Auto-bump version to $VERSION"
+            git push
+          fi
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+

@@ -1,0 +1,42 @@
+name: Auto Merge Chart Changes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  detect-and-merge:
+    name: Detect chart changes and merge to chart-release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+      - name: Check for chart changes
+        id: chart-changed
+        run: |
+          CHANGED=$(git diff --name-only origin/chart-release...HEAD | grep '^charts/' || true)
+          if [ -n "$CHANGED" ]; then
+            echo "Charts changed: $CHANGED"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "No chart changes"
+            echo "changed=false" >> $GITHUB_OUTPUT
+
+      - name: Merge main ➝ chart-release
+        if: steps.chart-changed.outputs.changed == 'true'
+        run: |
+          git fetch origin chart-release
+          git checkout -b temp-merge origin/chart-release
+          git merge origin/main --no-edit
+          git push origin HEAD:chart-release
+
