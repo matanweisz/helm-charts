@@ -21,16 +21,19 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
 
-      - name: Check for chart changes
+            - name: Check for chart changes
         id: chart-changed
         run: |
-          CHANGED=$(git diff --name-only origin/chart-release...HEAD | grep '^charts/' || true)
-          if [ -n "$CHANGED" ]; then
-            echo "Charts changed: $CHANGED"
+          CHANGED_FILES=$(git diff --name-only origin/chart-release...HEAD || true)
+          echo "$CHANGED_FILES" > changed_files.txt
+          
+          if grep -q '^charts/' changed_files.txt; then
+            echo "Charts were changed"
             echo "changed=true" >> $GITHUB_OUTPUT
           else
-            echo "No chart changes"
+            echo "No charts changed"
             echo "changed=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Merge main ➝ chart-release
         if: steps.chart-changed.outputs.changed == 'true'
