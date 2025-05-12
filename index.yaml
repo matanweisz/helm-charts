@@ -1,6 +1,27 @@
 apiVersion: v1
 entries:
+  nginx-ingress:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-05-12T10:51:29.086687971Z"
+    description: Creates a Kubernetes Nginx Ingress Resource (rules/routing/configurations)
+    digest: 2537946735a6d9f8d2b44bccb106d61288438d916d82a1f1e9922c5bc37465d1
+    name: nginx-ingress
+    type: application
+    urls:
+    - https://github.com/matanweisz/helm-charts/releases/download/nginx-ingress-0.1.0/nginx-ingress-0.1.0.tgz
+    version: 0.1.0
   weather-app:
+  - apiVersion: v2
+    appVersion: 12-05-2025-c78fae6
+    created: "2025-05-12T10:51:29.31323479Z"
+    description: A Helm chart for my python weather app
+    digest: 81030c340d0eddfcd3417b7a40c990f45c995b2b89b3a919a9fbf670ae6cb3e7
+    name: weather-app
+    type: application
+    urls:
+    - https://github.com/matanweisz/helm-charts/releases/download/weather-app-12-05-2025-c78fae6/weather-app-12-05-2025-c78fae6.tgz
+    version: 12-05-2025-c78fae6
   - apiVersion: v2
     appVersion: 12-05-2025-b024f9f
     created: "2025-05-12T10:28:48.661421183Z"
@@ -22,4 +43,4 @@ entries:
     urls:
     - https://github.com/matanweisz/helm-charts/releases/download/weather-app-chart-0.1.0/weather-app-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-12T10:28:48.661426543Z"
+generated: "2025-05-12T10:51:29.313247063Z"
