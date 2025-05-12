@@ -21,4 +21,4 @@ version: "12-05-2025-909ed3b"
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "12-05-2025-909ed3b"
+appVersion: "12-05-2025-d78e163-8"
