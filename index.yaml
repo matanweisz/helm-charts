@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  weather-app-chart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-05-12T09:03:54.66143148Z"
+    description: A Helm chart for Kubernetes
+    digest: a0dad2fbbe3ca81e7bfd8dde0a4edaa7ce9fc8906b26008120eff8759ec3c3c8
+    name: weather-app-chart
+    type: application
+    urls:
+    - https://github.com/matanweisz/helm-charts/releases/download/weather-app-chart-0.1.0/weather-app-chart-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-05-12T09:03:54.661438473Z"
