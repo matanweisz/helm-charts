@@ -64,3 +64,12 @@ jobs:
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
+      - name: Update ApplicationSet version
+        run: |
+          FILE="applicationset.yaml"
+          VERSION="$DATE-$HASH-$RUN_NUMBER"
+          sed -i "s/targetRevision: .*/targetRevision: $VERSION/" "$FILE"
+          git add "$FILE"
+          git commit -m "Update ApplicationSet version to $VERSION"
+          git push
+
