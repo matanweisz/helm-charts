@@ -1,6 +1,6 @@
 apiVersion: v2
-name: weather-app-chart
-description: A Helm chart for Kubernetes
+name: weather-app
+description: A Helm chart for my python weather app
 
 # A chart can be either an 'application' or a 'library' chart.
 #
