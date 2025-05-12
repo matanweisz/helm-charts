@@ -1,15 +1,15 @@
-name: Release Charts
+name: Release Helm Charts
 
 on:
   push:
     branches:
-      - chart-release
+      - main
 
 jobs:
   release:
-    runs-on: ubuntu-latest
     permissions:
       contents: write
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -17,36 +17,41 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Git
+      - name: Configure Git
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Generate Versions for Modified Charts
-        id: version
+      - name: Detect Changed Charts
+        id: detect-charts
         run: |
-          DATE=$(date +'%d-%m-%Y')
-          COMMIT_HASH=$(git rev-parse --short HEAD)
-          VERSION="$DATE-$COMMIT_HASH"
-          echo "Using version: $VERSION"
-
-          CHANGED=false
-          for CHART in charts/*; do
-            if git diff --name-only HEAD^ HEAD | grep "$CHART/" > /dev/null; then
-              echo "Updating chart in $CHART"
-              sed -i "s/^version:.*/version: \"$VERSION\"/" "$CHART/Chart.yaml"
-              sed -i "s/^appVersion:.*/appVersion: \"$VERSION\"/" "$CHART/Chart.yaml"
-              CHANGED=true
-            fi
-          done
-
-          if $CHANGED; then
-            git add charts/*/Chart.yaml
-            git commit -m "Auto-bump version to $VERSION"
-            git push
+          CHANGED=$(git diff --name-only HEAD~1 HEAD | grep '^charts/' || true)
+          echo "Changed files: $CHANGED"
+          if [ -n "$CHANGED" ]; then
+            echo "charts_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "charts_changed=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Auto-bump versions if charts changed
+        if: steps.detect-charts.outputs.charts_changed == 'true'
+        run: |
+          DATE=$(date +'%d-%m-%Y')
+          HASH=$(git rev-parse --short HEAD)
+          VERSION="$DATE-$HASH"
+
+          for CHART in $(find charts -name Chart.yaml); do
+            echo "Updating version in $CHART to $VERSION"
+            sed -i "s/^version:.*/version: \"$VERSION\"/" "$CHART"
+            sed -i "s/^appVersion:.*/appVersion: \"$VERSION\"/" "$CHART"
+          done
+
+          git add charts/**/Chart.yaml
+          git commit -m "Auto-bump chart versions to $VERSION"
+          git push
+
       - name: Run chart-releaser
+        if: steps.detect-charts.outputs.charts_changed == 'true'
         uses: helm/chart-releaser-action@v1.7.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
