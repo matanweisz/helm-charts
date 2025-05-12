@@ -59,6 +59,8 @@ jobs:
       - name: Run chart-releaser
         if: steps.detect-charts.outputs.charts_changed == 'true'
         uses: helm/chart-releaser-action@v1.7.0
+        with:
+          charts_dir: charts
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
