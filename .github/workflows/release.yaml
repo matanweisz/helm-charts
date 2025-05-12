@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'charts/**'
 
 jobs:
   release:
@@ -33,16 +35,18 @@ jobs:
             echo "charts_changed=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Auto-bump versions if charts changed
+      - name: Auto-bump versions of changed charts
         if: steps.detect-charts.outputs.charts_changed == 'true'
         run: |
           DATE=$(date +'%d-%m-%Y')
           HASH=$(git rev-parse --short HEAD)
           RUN_NUMBER=${{ github.run_number }}
-          
           VERSION="$DATE-$HASH-$RUN_NUMBER"
 
-          for CHART in $(find charts -name Chart.yaml); do
+          CHANGED_DIRS=$(git diff --name-only HEAD~1 HEAD | grep '^charts/' | cut -d/ -f2 | uniq)
+
+          for DIR in $CHANGED_DIRS; do
+            CHART="charts/$DIR/Chart.yaml"
             echo "Updating version in $CHART to $VERSION"
             sed -i "s/^version:.*/version: \"$VERSION\"/" "$CHART"
             sed -i "s/^appVersion:.*/appVersion: \"$VERSION\"/" "$CHART"
