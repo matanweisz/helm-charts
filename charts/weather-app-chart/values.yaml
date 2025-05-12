@@ -14,3 +14,11 @@ service:
 secret:
   name: "docker-credential-secret"
   namespace: "default"
+
+first:
+  name: "blue"
+  color: "blue"
+
+second:
+  name: "green"
+  color: "green"

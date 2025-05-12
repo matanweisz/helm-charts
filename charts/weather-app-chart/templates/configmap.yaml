@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.first.name }}
+data:
+  BG_COLOR: {{ .Values.first.color }}
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.second.name }}
+data:
+  BG_COLOR: {{ .Values.second.color }}
