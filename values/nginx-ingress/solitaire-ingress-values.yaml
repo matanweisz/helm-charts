@@ -1,0 +1,8 @@
+ingress:
+  name: "ingress-solitaire"
+  className: "nginx"
+  host: "webapp.solitaire.local"
+
+service:
+  name: "solitaire-app-service"
+  portNumber: "80"

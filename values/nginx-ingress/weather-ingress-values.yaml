@@ -1,0 +1,8 @@
+ingress:
+  name: "ingress-weather"
+  className: "nginx"
+  host: "webapp.weather.local"
+
+service:
+  name: "weather-app-service"
+  portNumber: "80"
