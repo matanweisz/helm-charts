@@ -21,6 +21,16 @@ entries:
     urls:
     - https://github.com/matanweisz/helm-charts/releases/download/configmap-12-05-2025-7d378b8-9/configmap-12-05-2025-7d378b8-9.tgz
     version: 12-05-2025-7d378b8-9
+  - apiVersion: v2
+    appVersion: 12-05-2025-4240be1-11
+    created: "2025-05-12T15:19:36.403693434Z"
+    description: A Helm chart for creating a configmap
+    digest: 9bd3640798b6be4d9750f71a81f97cf383b2ff1e0c8e5ac1d9837dd0814d56ab
+    name: configmap
+    type: application
+    urls:
+    - https://github.com/matanweisz/helm-charts/releases/download/configmap-12-05-2025-4240be1-11/configmap-12-05-2025-4240be1-11.tgz
+    version: 12-05-2025-4240be1-11
   nginx-ingress:
   - apiVersion: v2
     appVersion: 12-05-2025-cda55d8-10
@@ -52,6 +62,16 @@ entries:
     urls:
     - https://github.com/matanweisz/helm-charts/releases/download/nginx-ingress-12-05-2025-7d378b8-9/nginx-ingress-12-05-2025-7d378b8-9.tgz
     version: 12-05-2025-7d378b8-9
+  - apiVersion: v2
+    appVersion: 12-05-2025-4240be1-11
+    created: "2025-05-12T15:19:36.553055526Z"
+    description: Creates a Kubernetes Nginx Ingress Resource (rules/routing/configurations)
+    digest: 8182093272e752937eeea2cf7075d1d769a3e6cc14912c88bd248a91195aa888
+    name: nginx-ingress
+    type: application
+    urls:
+    - https://github.com/matanweisz/helm-charts/releases/download/nginx-ingress-12-05-2025-4240be1-11/nginx-ingress-12-05-2025-4240be1-11.tgz
+    version: 12-05-2025-4240be1-11
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2025-05-12T10:51:29.086687971Z"
@@ -113,6 +133,16 @@ entries:
     urls:
     - https://github.com/matanweisz/helm-charts/releases/download/weather-app-12-05-2025-7d378b8-9/weather-app-12-05-2025-7d378b8-9.tgz
     version: 12-05-2025-7d378b8-9
+  - apiVersion: v2
+    appVersion: 12-05-2025-4240be1-11
+    created: "2025-05-12T15:19:36.673063087Z"
+    description: A Helm chart for my python weather app
+    digest: f2da21bcb9ab22f730fad87ec3806caf14f32feaa0aea3c87daf792ba2139d8b
+    name: weather-app
+    type: application
+    urls:
+    - https://github.com/matanweisz/helm-charts/releases/download/weather-app-12-05-2025-4240be1-11/weather-app-12-05-2025-4240be1-11.tgz
+    version: 12-05-2025-4240be1-11
   weather-app-chart:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -124,4 +154,4 @@ entries:
     urls:
     - https://github.com/matanweisz/helm-charts/releases/download/weather-app-chart-0.1.0/weather-app-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-12T13:27:38.750541721Z"
+generated: "2025-05-12T15:19:36.673148816Z"
