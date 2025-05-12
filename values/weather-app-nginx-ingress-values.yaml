@@ -1,5 +1,5 @@
 ingress:
-  name: "ingress-weather"
+  name: "weather-app-ingress"
   className: "nginx"
   host: "webapp.weather.local"
 
