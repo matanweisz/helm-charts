@@ -21,6 +21,23 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      - name: Generate Chart Version
+        id: chart-version
+        run: |
+          DATE=$(date +'%d-%m-%Y')
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          VERSION="$DATE-$COMMIT_HASH"
+          echo "Generated version: $VERSION"
+          sed -i "s/^version:.*/version: \"$VERSION\"/" charts/weather-app/Chart.yaml
+          sed -i "s/^appVersion:.*/appVersion: \"$VERSION\"/" charts/weather-app/Chart.yaml
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Commit version bump
+        run: |
+          git add charts/weather-app/Chart.yaml
+          git commit -m "Auto-bump chart version to ${{ steps.chart-version.outputs.version }}"
+          git push
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0
         env:
