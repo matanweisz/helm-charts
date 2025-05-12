@@ -18,7 +18,7 @@ spec:
       source:
         repoURL: https://matanweisz.github.io/helm-charts
         chart: '{{path.split("/")[1]}}'
-        targetRevision: 12-05-2025-cda55d8-10
+        targetRevision: --
         helm:
           valueFiles:
             - values/{{path.basename}}.yaml
