@@ -2,25 +2,21 @@
 deployment:
   name: "weather-app"
   replicas: 2
-  image: "matanweisz/weather_app:latest"
+  image: "matanweisz/weather_app:20250513-7ab8129-17"
   containerPort: 5000
   configmap: "bg-color"
   configmapKey: "BG_COLOR"
-
 service:
   name: "weather-app-service"
   port: 80
   targetPort: 5000
-
 secret:
   name: "docker-credential-secret"
   namespace: "default"
-
 # Configmap
 configmap:
   name: "bg-color"
   color: "yellow"
-
 # Nginx Ingress
 ingress:
   name: "weather-app-ingress"
