@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://matanweisz.github.io/helm-charts/
     chart: weather-app
-    targetRevision: "*"
+    targetRevision: 0.1.*
     helm:
       valueFiles:
         - values.yaml
