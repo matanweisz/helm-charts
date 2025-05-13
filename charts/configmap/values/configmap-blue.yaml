@@ -1,3 +1,0 @@
-configmap:
-  name: "blue"
-  color: "yellow"
