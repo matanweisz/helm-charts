@@ -2,7 +2,7 @@
 deployment:
   name: "weather-app"
   replicas: 2
-  image: "matanweisz/weather_app:26803c8-0.1.22"
+  image: "matanweisz/weather_app:5a6e6b9-0.1.23"
   containerPort: 5000
   configmap: "bg-color"
   configmapKey: "BG_COLOR"
@@ -22,3 +22,4 @@ ingress:
   name: "weather-app-ingress"
   className: "nginx"
   host: "webapp.weather.local"
+  portNumber: 80
