@@ -3,6 +3,16 @@ entries:
   weather-app:
   - apiVersion: v2
     appVersion: 12-05-2025-4240be1-11
+    created: "2025-05-13T15:10:06.102116487Z"
+    description: A Helm chart for my python weather app
+    digest: c0213e7ef36e56160e0e2068d69370eecd1283300a7345bc19ad82339cc26534
+    name: weather-app
+    type: application
+    urls:
+    - weather-app-0.1.30.tgz
+    version: 0.1.30
+  - apiVersion: v2
+    appVersion: 12-05-2025-4240be1-11
     created: "2025-05-13T14:44:32.687504127Z"
     description: A Helm chart for my python weather app
     digest: df3e02a5b6671bf18ba21b5a03ac4d963639f8038831627835fed848b5249f74
@@ -91,4 +101,4 @@ entries:
     urls:
     - weather-app-0.1.18.tgz
     version: 0.1.18
-generated: "2025-05-13T14:44:32.687539723Z"
+generated: "2025-05-13T15:10:06.10216069Z"
