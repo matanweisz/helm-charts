@@ -2,7 +2,7 @@
 deployment:
   name: "weather-app"
   replicas: 2
-  image: "matanweisz/weather_app:0.1.30"
+  image: "matanweisz/weather_app:0.1.31"
   containerPort: 5000
   configmap: "bg-color"
   configmapKey: "BG_COLOR"
@@ -16,7 +16,7 @@ secret:
 # Configmap
 configmap:
   name: "bg-color"
-  color: "blue"
+  color: "green"
 # Nginx Ingress
 ingress:
   name: "weather-app-ingress"
