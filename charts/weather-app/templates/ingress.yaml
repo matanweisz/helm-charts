@@ -14,4 +14,4 @@ spec:
           service:
             name: {{ .Values.service.name }}
             port:
-              number: {{ .Values.service.portNumber }}
+              number: {{ .Values.ingress.portNumber }}
