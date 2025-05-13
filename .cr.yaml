@@ -1,6 +1,7 @@
 owner: matanweisz
 git-repo: helm-charts
 charts-dir: charts
-release-name-template: "{{ .Name }}-{{ .Version }}"
+release-name-template: "{{ .Version }}"
 index-path: index.yaml
 packages-with-index: true
+pages-branch: gh-pages
