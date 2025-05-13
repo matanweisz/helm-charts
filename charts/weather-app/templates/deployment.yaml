@@ -6,6 +6,7 @@ metadata:
     app: {{ .Values.deployment.name }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
+  revisionHistoryLimit: {{ .Values.deployment.revisionHistory }}
   selector:
     matchLabels:
       app: {{ .Values.deployment.name }}
