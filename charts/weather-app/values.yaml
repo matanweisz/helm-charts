@@ -3,7 +3,7 @@ deployment:
   name: "weather-app"
   replicas: 2
   revisionHistory: 0
-  image: "matanweisz/weather_app:0.1.34"
+  image: "matanweisz/weather_app:0.1.35"
   containerPort: 5000
   configmap: "bg-color"
   configmapKey: "BG_COLOR"
